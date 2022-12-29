@@ -224,7 +224,7 @@ public class Issue extends javax.swing.JFrame {
                //changing the books table by decrementing the quantity
                String s = "update books set BK_QTY = BK_QTY - 1 where BK_ID='"+BKID+"'";
                //checking is book available or not 
-               String s1 = "select * from books ";
+               String s1 = "select * from books where BK_ID='"+BKID+"'";
                //executing select query
                ResultSet rs = st2.executeQuery(s1);
                if(rs.next())
