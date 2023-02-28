@@ -35,6 +35,6 @@ insert into books  values(03,'The Brief History of Time','Stephan Hawlking','Ban
 insert into books  values(04,'Wings Of Fire','A.P.J.Abdul Kalam','Cocoblu','600','15');
 insert into books  values(05,'The World As I See It','Albert Einsten','The Bodley Head','400','25');
 --inserting into issued_books
-insert into issued_books values(01,'The Alchemist',01,'Sam Daniel','7559282625',curdate(),curdate()+3);
+insert into issued_books values(01,'The Alchemist',01,'Sam Daniel','7559282625',curdate(),curdate()-1);
 insert into issued_books values(02,'Harry Porter',20,'Vivek Hajare','9921837076',curdate(),curdate()+7);
 insert into issued_books values(01,'Wings Of Fire',12,'Sonali Argade','9529282725',curdate(),curdate()+7;
