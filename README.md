@@ -3,6 +3,11 @@ Its an advance java project. Helps to make the work of library management effici
 
 
 # Members 
-This project is created in association with @Neha Deshpande - Developer & Designer
+This project is created in association with  
+Isha Kulkarni - Developer & Designer https://github.com/ishakulkarni23  
 
-https://github.com/NehaManishDeshpande
+Neha Deshpande - Developer & Designer https://github.com/NehaManishDeshpande  
+
+Niranjan Dangi - Developer & Designer https://github.com/NiranjanDangi  
+
+
