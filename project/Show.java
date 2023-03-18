@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package project;
 
 import com.lowagie.text.Document;
@@ -24,6 +20,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+<<<<<<< HEAD
+
+=======
 
 
 
@@ -31,15 +30,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author DELL
  */
+>>>>>>> 908e0ad891dc74f6ba36bcbfc61b7a2631d9f5be
 public class Show extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Show
-     */
     public Show() {
         initComponents();
     }
 
+<<<<<<< HEAD
+=======
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,8 +151,8 @@ public class Show extends javax.swing.JFrame {
          System.out.println(e);
         }
     }
+>>>>>>> 908e0ad891dc74f6ba36bcbfc61b7a2631d9f5be
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -171,7 +170,7 @@ public class Show extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 0, 0));
         jTabbedPane1.setFont(new java.awt.Font("Magneto", 0, 18)); // NOI18N
@@ -342,8 +341,17 @@ public class Show extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
+<<<<<<< HEAD
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        //download available books list 
+        JFileChooser filechooser = new JFileChooser();
+        filechooser.setDialogTitle("Specify a file");
+        int userSelection = filechooser.showSaveDialog(this);
+        if(userSelection == JFileChooser.APPROVE_OPTION)
+        {
+=======
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
             /* //download available books list
@@ -352,6 +360,7 @@ public class Show extends javax.swing.JFrame {
             int userSelection = filechooser.showSaveDialog(this);
             if(userSelection == JFileChooser.APPROVE_OPTION)
             {
+>>>>>>> 908e0ad891dc74f6ba36bcbfc61b7a2631d9f5be
             File filetosave = filechooser.getSelectedFile();
             try
             {
@@ -375,10 +384,15 @@ public class Show extends javax.swing.JFrame {
             {
             System.out.println(ex);
             }
+<<<<<<< HEAD
+        }
+    }
+=======
             }
             */
             available_download();
     }//GEN-LAST:event_jButton2ActionPerformed
+>>>>>>> 908e0ad891dc74f6ba36bcbfc61b7a2631d9f5be
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //Show button - issued books
@@ -408,7 +422,7 @@ public class Show extends javax.swing.JFrame {
         {
             System.out.println(e);  
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //show button - avialable books
