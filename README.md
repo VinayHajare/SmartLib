@@ -3,7 +3,7 @@ Its an advance java project. Helps to make the work of library management effici
 
 
 # Members 
-This project is created in association with   
+This project is created in association with -->  
 
 Isha Kulkarni - Developer & Designer https://github.com/ishakulkarni23  
 
