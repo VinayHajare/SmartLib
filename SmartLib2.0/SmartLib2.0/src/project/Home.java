@@ -342,7 +342,9 @@ public class Home extends javax.swing.JFrame {
     }                                         
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+        //reminder button action
+        AutomatedReminder.remind();
+        JOptionPane.showMessageDialog(this,"Remiders sent successfully !!","Success",JOptionPane.INFORMATION_MESSAGE);
     }                                         
 
     /**
