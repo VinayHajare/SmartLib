@@ -24,6 +24,7 @@ public class AutomatedReminder {
            for(Item item : items){
                java.util.Date dueDate = calculateDueDate(item);
                String to = patron.getEmail();
+               System.out.println(to);
                String title = item.getTitle();
                //check if its time to send first email(3 days before due date)
                if(isTimeToSendEmail(dueDate, -3))
@@ -32,7 +33,7 @@ public class AutomatedReminder {
                }
                //check if its time to send seccond email(on due date)
                if(isTimeToSendEmail(dueDate, 0))
-               {
+               { 
                    sendReminderEmail(to,"Second Reminder: Book due today.", title, dueDate);
                }
                //check if its time to send the third email(3 days after due date)
@@ -118,7 +119,7 @@ public class AutomatedReminder {
         //creating  SMTP server properties
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", true);
-        properties.put("mail.smtp.strarttls.enable", true);
+        properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.port", "587");
         properties.put("mail.smtp.host", host);
         //creating session for seending mail
