@@ -57,6 +57,6 @@ insert into books values(10,'The Discoverry of India','Jawarlal Nehru','Platkus'
 insert into Borrowers values(01,'Vinay Hajare','Kanersar, Khed, Pune','vinayhajare2004@gmail.com','7559282625','0','0');
 
 --inserting into issued_books
-insert into issued_books values(01,'The Alchemist',01,'Vinay Hajare','7559282625',curdate(),curdate()+4);
-insert into issued_books values(02,'Harry Porter',01,'Vinay Hajare','7559282625',curdate(),curdate()+7);
-insert into issued_books values(04,'Wings Of Fire',01,'Vinay Hajare','7559282625',curdate(),curdate()+8);
+insert into issued_books values(01,'The Alchemist',01,'Vinay Hajare','7559282625',curdate(),curdate()+3);
+insert into issued_books values(02,'Harry Porter',01,'Vinay Hajare','7559282625',curdate(),curdate());
+insert into issued_books values(04,'Wings Of Fire',01,'Vinay Hajare','7559282625',curdate(),curdate()-3);
