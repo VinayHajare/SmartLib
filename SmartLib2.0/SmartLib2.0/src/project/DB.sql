@@ -20,13 +20,15 @@ CREATE TABLE Books
 --Creating table IssBK_BORROWEDued_Books
 CREATE TABLE Issued_Books
 (
- BK_ID VARCHAR(20) FOREIGN KEY references Books(BK_ID),
+ BK_ID VARCHAR(20) ,
  BK_NAME VARCHAR(40),
- BOR_ID VARCHAR(20) FOREIGN KEY references Borrowers(BOR_ID),
+ BOR_ID VARCHAR(20),
  BOR_NAME VARCHAR(50),
  BOR_CONTACT VARCHAR(40),
  ISS_DATE DATE,
- RET_DATE DATE
+ RET_DATE DATE,
+ FOREIGN KEY(BK_ID) references Books(BK_ID),
+ FOREIGN KEY(BOR_ID) references Borrowers(BOR_ID)
 );
 
 --Creating table Borrowers
