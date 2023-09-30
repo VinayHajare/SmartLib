@@ -1,8 +1,8 @@
-# Library-Management-System
+# SmartLib 📒
 Its an advance java project. Helps to make the work of library management efficient and easy
 
 
-# Members 
+# Members 🧑‍💻
 This project is created in association with -->  
 
 Isha Kulkarni - Developer & Designer https://github.com/ishakulkarni23  
