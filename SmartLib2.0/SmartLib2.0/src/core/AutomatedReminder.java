@@ -5,20 +5,12 @@
 
 package core;
 
-import util.Config;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-
 
 /**
  *
@@ -28,9 +20,6 @@ import java.time.format.DateTimeFormatter;
 
 public class AutomatedReminder {
 
-    private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
-    private static final ExecutorService emailExecutor = Executors.newFixedThreadPool(NUM_THREADS);
-    
     public static void remind() {
         // Getting the list of patrons from the database
         List<Patron> patrons = getPatrons();
@@ -43,24 +32,17 @@ public class AutomatedReminder {
 
                 // Check if it's time to send the first email (3 days before the due date)
                 if (isTimeToSendEmail(dueDate, -3)) {
-                    emailExecutor.submit(() -> sendReminderEmail(to, "First Reminder: Your book is due in 3 Days.", title, dueDate));
+                    sendReminderEmail(to, "First Reminder: Your book is due in 3 Days.", title, dueDate);
                 }
                 // Check if it's time to send the second email (on due date)
                 if (isTimeToSendEmail(dueDate, 0)) {
-                    emailExecutor.submit(() -> sendReminderEmail(to, "Second Reminder: Book due today.", title, dueDate));
+                    sendReminderEmail(to, "Second Reminder: Book due today.", title, dueDate);
                 }
                 // Check if it's time to send the third email (3 days after the due date)
                 if (isTimeToSendEmail(dueDate, 3)) {
-                    emailExecutor.submit(() -> sendReminderEmail(to, "Last Reminder: Book is overdue.", title, dueDate));
+                    sendReminderEmail(to, "Last Reminder: Book is overdue.", title, dueDate);
                 }
             }
-        }
-        
-        emailExecutor.shutdown();
-        try {
-            emailExecutor.awaitTermination(2, TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 
