@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Vinay
  */
-public class RegisterNew extends javax.swing.JFrame {
+public class Register extends javax.swing.JFrame {
 
     /**
      * Creates new form RegisterNew
      */
-    public RegisterNew() {
+    public Register() {
         initComponents();
     }
 
@@ -59,7 +59,7 @@ public class RegisterNew extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("null");
+        setTitle("Register Page");
         setName("Home"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1600, 940));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -135,7 +135,7 @@ public class RegisterNew extends javax.swing.JFrame {
         ulab.setForeground(new java.awt.Color(255, 0, 0));
         ulab.setText("*");
         ulab.setName("ulab"); // NOI18N
-        jPanel4.add(ulab, new org.netbeans.lib.awtextra.AbsoluteConstraints(797, 62, 271, -1));
+        jPanel4.add(ulab, new org.netbeans.lib.awtextra.AbsoluteConstraints(797, 62, 290, -1));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Century Schoolbook", 1, 40)); // NOI18N
@@ -156,7 +156,7 @@ public class RegisterNew extends javax.swing.JFrame {
         elab.setForeground(new java.awt.Color(255, 0, 0));
         elab.setText("*");
         elab.setName("elab"); // NOI18N
-        jPanel4.add(elab, new org.netbeans.lib.awtextra.AbsoluteConstraints(797, 164, 271, -1));
+        jPanel4.add(elab, new org.netbeans.lib.awtextra.AbsoluteConstraints(797, 164, 290, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Century Schoolbook", 1, 40)); // NOI18N
@@ -187,7 +187,7 @@ public class RegisterNew extends javax.swing.JFrame {
         mlab.setForeground(new java.awt.Color(255, 0, 0));
         mlab.setText("*");
         mlab.setName("mlab"); // NOI18N
-        jPanel4.add(mlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(797, 368, 271, -1));
+        jPanel4.add(mlab, new org.netbeans.lib.awtextra.AbsoluteConstraints(797, 368, 290, -1));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton3.setText("Register");
@@ -249,7 +249,7 @@ public class RegisterNew extends javax.swing.JFrame {
         Matcher match = patt.matcher(user);
         if(!match.matches())
         {
-            ulab.setText("*Username must contain at least 2 characters. (- _ . are allowed)");
+            ulab.setText("*Username must contain at least 2 characters.");
         }
         else
         {
@@ -265,7 +265,7 @@ public class RegisterNew extends javax.swing.JFrame {
         Matcher match = patt.matcher(email.getText());
         if(!match.matches())
         {
-            elab.setText("*Email is incorrect");
+            elab.setText("*Email is invalid!");
         }
         else
         {
@@ -274,25 +274,31 @@ public class RegisterNew extends javax.swing.JFrame {
     }//GEN-LAST:event_emailKeyTyped
 
     private void mobileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobileKeyTyped
+     
+        char keyChar = evt.getKeyChar();
         String value = mobile.getText();
         int length = value.length();
 
-        if(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' && length != 10)
-        {
+        // Allow backspace and delete for editing
+        if (keyChar == '\b' || keyChar == '\u007F') {
+            return;
+        }
 
-            if((value.indexOf("6") == 0) || (value.indexOf("7") == 0) || (value.indexOf("8") == 0) || (value.indexOf("9") == 0))
-            {
-                mlab.setText("Must contain 10 digits");
+        // Check if the input character is a digit and the length is within the limit
+        if (Character.isDigit(keyChar) && length < 10) {
+            // If it's the first character, check if it's one of the allowed digits
+            if (length == 0) {
+                if (keyChar != '6' && keyChar != '7' && keyChar != '8' && keyChar != '9') {
+                    mlab.setText("Must start with 6, 7, 8 or 9");
+                    evt.consume(); // Prevent the character from being added
+                } else {
+                    mlab.setText(null);
+                }
+            } else {    
                 mlab.setText(null);
             }
-            else
-            {
-                mlab.setText("Must start with 6, 7, 8 or 9");
-            }
-
-        }else
-        {
-            mobile.setEditable(false);
+        } else {
+            evt.consume(); // Prevent the character from being added if it's not a digit or length exceeds 10
         }
     }//GEN-LAST:event_mobileKeyTyped
 
@@ -302,7 +308,7 @@ public class RegisterNew extends javax.swing.JFrame {
         if(username.getText().equals("")||mobile.getText().equals("") || password.getText().equals("")||email.getText().equals(""))
         {
             //showing error message
-            JOptionPane.showMessageDialog(this, "Error :: Please enter data !!!");
+            JOptionPane.showMessageDialog(this, " Please enter data !!!", "Error", JOptionPane.WARNING_MESSAGE);
         }
         else
         {
@@ -311,7 +317,7 @@ public class RegisterNew extends javax.swing.JFrame {
                 if(ulab.getText()==null && elab.getText()==null && mlab.getText()== null)
                 {
                     PreparedStatement pst = null;
-                    String query = "insert into usersS values(?,?,?,?)";
+                    String query = "insert into users values(?,?,?,?)";
                     Connection con = Connect.dbconnection();
                     pst=con.prepareStatement(query);
                     pst.setString(1, username.getText());
@@ -330,7 +336,7 @@ public class RegisterNew extends javax.swing.JFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null,"Invalid details entered !");
+                    JOptionPane.showMessageDialog(null,"Invalid details entered !", "ERROR", JOptionPane.WARNING_MESSAGE);
                     //clearing the text fields
                     username.setText("");
                     mobile.setText("");
@@ -353,7 +359,7 @@ public class RegisterNew extends javax.swing.JFrame {
         f2.show();//displaying Login_Form
         ImageIcon img;
         img = new ImageIcon(getClass().getResource("/assests/icons8-login-64.png"));
-        f2.setTitle("Login Form");
+        f2.setTitle("Login Page");
         f2.setIconImage(img.getImage());
         dispose();//close current Register Page after Opening the Login Page
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -375,13 +381,13 @@ public class RegisterNew extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -389,7 +395,7 @@ public class RegisterNew extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new RegisterNew().setVisible(true);
+                new Register().setVisible(true);
             }
         });
     }
