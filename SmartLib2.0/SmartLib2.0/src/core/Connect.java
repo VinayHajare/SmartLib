@@ -9,13 +9,14 @@ package core;
 import util.Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
  * @author Hydron
  */
 public class Connect {
-    public static Connection dbconnection() throws Exception
+    public static Connection dbconnection() throws ClassNotFoundException, SQLException
     {
         Connection con;
         Class.forName("com.mysql.jdbc.Driver");

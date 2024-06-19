@@ -4,23 +4,27 @@
  */
 package core;
 
+import java.awt.HeadlessException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import util.LoggerUtil;
 
 
 
 /**
  *
- * @author Vinay
+ * @author Hydron
  */
 public class Register extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegisterNew
+     * Creates new form Register
      */
     public Register() {
         initComponents();
@@ -47,7 +51,7 @@ public class Register extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         elab = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         mobile = new javax.swing.JTextField();
         mlab = new javax.swing.JLabel();
@@ -59,7 +63,7 @@ public class Register extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Register Page");
+        setTitle("null");
         setName("Home"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1600, 940));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -303,17 +307,24 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_mobileKeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        // validating password
+        String passwordRegex = "/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{5,16}$/";
+        Pattern pattern = Pattern.compile(passwordRegex);
+        
         //validating form by checking whether user has fill all data or not
-        if(username.getText().equals("")||mobile.getText().equals("") || password.getText().equals("")||email.getText().equals(""))
+        if(username.getText().equals("")||mobile.getText().equals("") || Arrays.toString(password.getPassword()).equals("")||email.getText().equals(""))
         {
             //showing error message
             JOptionPane.showMessageDialog(this, " Please enter data !!!", "Error", JOptionPane.WARNING_MESSAGE);
-        }
-        else
-        {
-            try
-            {
+        }else{
+            
+            Matcher matcher = pattern.matcher(Arrays.toString(password.getPassword()));
+            if(!matcher.matches()){
+                JOptionPane.showMessageDialog(null,"Length must be in 5-16 with one lowercase, uppcase letter and one number", "Invalid Password", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            try{
                 if(ulab.getText()==null && elab.getText()==null && mlab.getText()== null)
                 {
                     PreparedStatement pst = null;
@@ -336,7 +347,7 @@ public class Register extends javax.swing.JFrame {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null,"Invalid details entered !", "ERROR", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Invalid details entered!", "ERROR", JOptionPane.WARNING_MESSAGE);
                     //clearing the text fields
                     username.setText("");
                     mobile.setText("");
@@ -345,10 +356,14 @@ public class Register extends javax.swing.JFrame {
                     email.setEditable(true);
                 }
 
-            }
-            catch (Exception ex)
-            {
-                System.out.println(ex);
+            }catch (SQLException ex){
+                JOptionPane.showMessageDialog(rootPane, "Database Operation Failed !!!", "Database ERROR", JOptionPane.ERROR_MESSAGE);
+                LoggerUtil.logError("Database operation Failed", ex);
+            }catch (ClassNotFoundException ex){
+                JOptionPane.showMessageDialog(rootPane, "Database driver not found!!!", "Database Driver ERROR", JOptionPane.ERROR_MESSAGE);
+                LoggerUtil.logError("Database driver not found", ex);
+            }catch (HeadlessException ex){
+                LoggerUtil.logError("Display system no available", ex);
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -356,11 +371,11 @@ public class Register extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Login f2 = new Login();
-        f2.show();//displaying Login_Form
         ImageIcon img;
         img = new ImageIcon(getClass().getResource("/assests/icons8-login-64.png"));
         f2.setTitle("Login Page");
         f2.setIconImage(img.getImage());
+        f2.setVisible(true);//displaying Login_Form
         dispose();//close current Register Page after Opening the Login Page
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -381,13 +396,13 @@ public class Register extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            LoggerUtil.logError("Nimbus Look and Feel class not found", ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            LoggerUtil.logError("Unable to instantiate the class ", ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            LoggerUtil.logError("Access denied", ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            LoggerUtil.logError("Look and feel not supported by the system", ex);
         }
         //</editor-fold>
 
@@ -420,7 +435,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel mlab;
     private javax.swing.JTextField mobile;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JLabel ulab;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

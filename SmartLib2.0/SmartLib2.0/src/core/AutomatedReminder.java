@@ -6,6 +6,7 @@
 package core;
 
 import util.Config;
+import util.LoggerUtil;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -24,7 +25,6 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Hydron
  */
-
 
 public class AutomatedReminder {
 
@@ -60,7 +60,7 @@ public class AutomatedReminder {
         try {
             emailExecutor.awaitTermination(2, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LoggerUtil.logError("Email Executor service interrupted.", e);
         }
     }
 
@@ -77,7 +77,7 @@ public class AutomatedReminder {
                 patrons.add(new Patron(id, email));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerUtil.logError("Database Operation Failed", e);
         }
         return patrons;
     }
@@ -98,7 +98,7 @@ public class AutomatedReminder {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LoggerUtil.logError("Database Operation Failed", e);
         }
         return items;
     }
@@ -147,9 +147,9 @@ public class AutomatedReminder {
             message.setText("This is a reminder that your book \"" + title + "\" is due on " + dueDate + ". Please submit it as soon as possible.");
             // Sending email
             Transport.send(message);
-            System.out.println("Reminder mail sent successfully to " + to);
+            LoggerUtil.logDebug("Reminder mail sent successfully to " + to);
         } catch (MessagingException e) {
-            e.printStackTrace();
+            LoggerUtil.logError("Unable to send email", e);
         }
     }
 

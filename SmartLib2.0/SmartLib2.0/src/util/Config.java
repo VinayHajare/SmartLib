@@ -17,12 +17,12 @@ public class Config {
     static{
         try( InputStream input = Config.class.getClassLoader().getResourceAsStream("./resources/config.properties")){
             if( input == null ){
-                System.err.println("Sorry, unable to load/find the config.poperties");
+                LoggerUtil.logWarning("Unable to load/find the config.poperties");
             }else{
                 properties.load(input);
             }
         }catch(Exception e){
-            e.getLocalizedMessage();
+            LoggerUtil.logError(e.getLocalizedMessage(), e);
         }
     }
     
