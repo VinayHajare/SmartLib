@@ -25,19 +25,19 @@
 4. **Import Libraries**: Add the required libraries by expanding SmartLib project, right-click on `libraries > Add jar/folder`. Select the .jar files from *Libraries* directory of the project.
 5. **Configure Credentials**: Create a *`src/resources/config.properties`* file in the root directory of the project with the following content:
 
-```properties
-# Database Configuration
-db.url=jdbc:mysql://localhost:3306/databaseName
-db.username=yourDatabaseUsername
-db.password=yourDatabasePassword
-
-# Email Configuration
-mail.smtp.host=smtp.yourEmailProvider.com
-mail.smtp.port=587
-mail.smtp.username=yourEmailUsername
-mail.smtp.password=yourEmailPassword
-mail.from=yourEmail@example.com
-```
+    ```properties
+    # Database Configuration
+    db.url=jdbc:mysql://localhost:3306/databaseName
+    db.username=yourDatabaseUsername
+    db.password=yourDatabasePassword
+    
+    # Email Configuration
+    mail.smtp.host=smtp.yourEmailProvider.com
+    mail.smtp.port=587
+    mail.smtp.username=yourEmailUsername
+    mail.smtp.password=yourEmailPassword
+    mail.from=yourEmail@example.com
+    ```
 5. **Build and Run**: Compile and run the application from NetBeans.
 
 ## 💡 Usage
