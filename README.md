@@ -51,8 +51,8 @@ mail.from=yourEmail@example.com
 ## 📋 Pending Features
 
 - [x] Use configuration properties for email and database access secrets.
-- [ ] Implement a special logging system for exceptions and issues.
-- [ ] Integrate multithreading for asynchronous email reminders and make it a background task.
+- [x] Implement a special logging system for exceptions and issues.
+- [x] Integrate multithreading for asynchronous email reminders and make it a background task.
 
 ## ✅ Completed Features
 
