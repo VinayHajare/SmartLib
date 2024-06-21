@@ -53,6 +53,8 @@
 - [x] Use configuration properties for email and database access secrets.
 - [x] Implement a special logging system for exceptions and issues.
 - [x] Integrate multithreading for asynchronous email reminders and make it a background task.
+- [ ] Integrate SwingWorker for background tasks such as email sending, adhoc database updates.
+- [ ] Implement the Borrowers dashboard.
 
 ## ✅ Completed Features
 
