@@ -50,12 +50,7 @@
 
 ## 📋 Pending Features
 
-- [x] Use configuration properties for email and database access secrets.
-- [x] Implement a special logging system for exceptions and issues.
-- [x] Integrate multithreading for asynchronous email reminders and make it a background task.
-- [x] Integrate SwingWorker for background tasks such as email sending, adhoc database updates.
-- [x] Implement the Borrowers dashboard.
-- [x] Implement Settings for more personalization.
+*Suggest some new features through pull request or report some issue.*
 
 ## ✅ Completed Features
 
@@ -67,6 +62,12 @@
 - [x] PDF download capability for audit purposes.
 - [x] Automated email reminder system using Javax.mail.
 - [x] Input validation using regex.
+- [x] Use configuration properties for email and database access secrets.
+- [x] Implement a special logging system for exceptions and issues.
+- [x] Integrate multithreading for asynchronous email reminders and make it a background task.
+- [x] Integrate SwingWorker for background tasks such as email sending, adhoc database updates.
+- [x] Implement the Borrowers dashboard.
+- [x] Implement Settings for more personalization.
 
 ## 🤝 Contributing
 
